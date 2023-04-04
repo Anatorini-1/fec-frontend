@@ -1,0 +1,100 @@
+@font-face {
+  font-family: "JetBrains";
+  src: local("JetBrains"), url("../fonts/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+body{
+  background-color: var(--bg-color);
+
+}
+
+*{
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "JetBrains";
+}
+
+:root{
+  --bg-color:#323949;
+  --darker: #212129;
+  --brighter: #4c5265
+}
+
+.container{
+  background-color: var(--bg-color);
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  place-items: center;
+  width: 100vw;
+  min-height: 100vh;
+
+}
+
+.title{
+  color: white;
+  /*Set an outline for the text*/
+  text-shadow: 0 0 1px #000, 0 0 2px #000, 0 0 3px #000, 0 0 4px #000, 0 0 5px #000, 0 0 6px #000, 0 0 7px #000, 0 0 8px #000, 0 0 9px #000, 0 0 10px #000;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 2rem;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  background-color: var(--darker);
+  border-radius: 30px;
+  padding: 4rem;
+}
+
+
+.gridItem{
+  min-width: 5rem;
+  color:white;
+  background-color: var(--darker);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 6px 6px 0px black;
+  padding:3rem;
+  grid-row-start: auto;
+  width: 100%;
+  height:100%;
+}
+
+.gridItemLabel{
+  font-size: 25px;
+  text-align: center;
+  display:block;
+  width:100%;
+  clear:both;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+  .container{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+  }
+  .title{
+    grid-column-end: 3;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .container{
+    grid-template-columns: 1fr;
+}
+  .title{
+    grid-column-end:2;
+  }
+}

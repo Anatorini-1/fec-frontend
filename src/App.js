@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import { useState, useEffect } from "react";
+import "./style/App.css";
+import axios from "axios";
+
+import Title from "./components/Title";
+import Encoding from "./components/Encoding";
+import InputData from "./components/InputData";
+import QueryApi from "./components/QueryApi";
+import Results from "./components/Results";
+import ChannelConfig from "./components/ChannelConfig";
 
 function App() {
+  const [requestBody, setRequestBody] = useState({
+    data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec",
+    type: "plaintext",
+    encoding: "HAMMING",
+    encodingParams: { 0: 3 },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Title />
+      <InputData requestBody={requestBody} setRequestBody={setRequestBody} />
+      <Encoding requestBody={requestBody} setRequestBody={setRequestBody} />
+      <ChannelConfig
+        requestBody={requestBody}
+        setRequestBOdy={setRequestBody}
+      />
+      <QueryApi requestBody={requestBody} setRequestBody={setRequestBody} />
+      <Results requestBody={requestBody} setRequestBody={setRequestBody} />
     </div>
   );
 }
