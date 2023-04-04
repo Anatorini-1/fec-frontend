@@ -13,10 +13,11 @@ import ChannelConfig from "./components/ChannelConfig";
 function App() {
   const [requestBody, setRequestBody] = useState({
     data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec",
-    type: "plaintext",
+    type: "plainText",
     encoding: "HAMMING",
     encodingParams: { 0: 3 },
   });
+  const [result, setResult] = useState([1]);
   return (
     <div className="container">
       <Title />
@@ -26,8 +27,18 @@ function App() {
         requestBody={requestBody}
         setRequestBOdy={setRequestBody}
       />
-      <QueryApi requestBody={requestBody} setRequestBody={setRequestBody} />
-      <Results requestBody={requestBody} setRequestBody={setRequestBody} />
+      <QueryApi
+        requestBody={requestBody}
+        setRequestBody={setRequestBody}
+        result={result}
+        setResult={setResult}
+      />
+      <Results
+        requestBody={requestBody}
+        setRequestBody={setRequestBody}
+        result={result}
+        setResult={setResult}
+      />
     </div>
   );
 }

@@ -1,0 +1,30 @@
+.summaryTable td:nth-child(2){
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.summaryTable tr:last-child td{
+    text-align: center;
+   
+}
+
+.summaryTable tr:last-child td button{
+    background-color: #4c5265;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: ease 0.3s all;
+    font-size: large;
+    width:10rem;
+    height:3rem;
+}
+
+.summaryTable tr:last-child td button:hover{
+    background-color: #13508d;
+    position: relative;
+    box-shadow: 5px 5px black;;
+}

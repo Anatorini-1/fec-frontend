@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "../style/Encoding.css";
 export default function Encoding({ requestBody, setRequestBody }) {
   const [encoding, setEncoding] = useState("HAMMING");
-  const [encodingParams, setEncodingParams] = useState({});
+  const [encodingParams, setEncodingParams] = useState([3]);
   useEffect(() => {
     setRequestBody({
       ...requestBody,
@@ -19,10 +19,10 @@ export default function Encoding({ requestBody, setRequestBody }) {
   const encodingParamsChange = (event) => {
     switch (encoding) {
       case "HAMMING":
-        setEncodingParams({ 0: event.target.value });
+        setEncodingParams([parseInt(event.target.value)]);
         break;
       case "REPEAT":
-        setEncodingParams({ 0: event.target.value });
+        setEncodingParams([parseInt(event.target.value)]);
     }
   };
 

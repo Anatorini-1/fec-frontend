@@ -12,12 +12,13 @@ body{
   margin: 0;
   box-sizing: border-box;
   font-family: "JetBrains";
+  transition: 0.5s ease-in-out all;
 }
 
 :root{
   --bg-color:#323949;
   --darker: #212129;
-  --brighter: #4c5265
+  --brighter: #4c5265;
 }
 
 .container{

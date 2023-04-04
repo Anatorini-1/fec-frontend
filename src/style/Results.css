@@ -1,0 +1,18 @@
+.resultsDiv{
+    width:100%;
+    word-wrap: break-word;
+
+}
+.resultsDiv pre{
+    margin:0;
+    padding:0;
+    font-size: 1.2rem;
+    background-color: var(--darker);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
