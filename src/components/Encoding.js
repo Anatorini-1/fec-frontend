@@ -54,7 +54,7 @@ export default function Encoding({ requestBody, setRequestBody }) {
   ];
 
   let radios = [
-    <>
+    <div key={0}>
       <input
         type="radio"
         id={encodings[0]}
@@ -64,12 +64,12 @@ export default function Encoding({ requestBody, setRequestBody }) {
       ></input>
       <label htmlFor={encodings[0]}>{encodings[0]}</label>
       <br />
-    </>,
+    </div>,
   ];
 
   for (let i = 1; i < encodings.length; i++) {
     radios.push(
-      <>
+      <div key={i}>
         <input
           type="radio"
           id={encodings[i]}
@@ -78,7 +78,7 @@ export default function Encoding({ requestBody, setRequestBody }) {
         ></input>
         <label htmlFor={encodings[i]}>{encodings[i]}</label>
         <br />
-      </>
+      </div>
     );
   }
 

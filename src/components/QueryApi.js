@@ -18,31 +18,33 @@ export default function QueryApi({ requestBody, setRequestBody, setResult }) {
     <div id="queryApi" className="gridItem">
       <div className="gridItemLabel">Summary</div>
       <table className="summaryTable" cellSpacing={"10px"}>
-        <tr>
-          <td>Type</td>
-          <td>{requestBody.type}</td>
-        </tr>
-        <tr>
-          <td>Filesize</td>
-          <td>{requestBody.data.length / 1000}kB</td>
-        </tr>
-        <tr>
-          <td>Encoding</td>
-          <td>{requestBody.encoding}</td>
-        </tr>
-        <tr>
-          <td>Encoding Params</td>
-          <td>{JSON.stringify(requestBody.encodingParams)}</td>
-        </tr>
-        <tr>
-          <td>Channel Parameters</td>
-          <td>{"PLACEHOLDER"}</td>
-        </tr>
-        <tr>
-          <td colSpan={2}>
-            <button onClick={sendRequest}>Send Request</button>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Type</td>
+            <td>{requestBody.type}</td>
+          </tr>
+          <tr>
+            <td>Filesize</td>
+            <td>{requestBody.data.length / 1000}kB</td>
+          </tr>
+          <tr>
+            <td>Encoding</td>
+            <td>{requestBody.encoding}</td>
+          </tr>
+          <tr>
+            <td>Encoding Params</td>
+            <td>{JSON.stringify(requestBody.encodingParams)}</td>
+          </tr>
+          <tr>
+            <td>Channel Parameters</td>
+            <td>{"PLACEHOLDER"}</td>
+          </tr>
+          <tr>
+            <td colSpan={2}>
+              <button onClick={sendRequest}>Send Request</button>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

@@ -5,7 +5,7 @@
 
 body{
   background-color: var(--bg-color);
-
+  
 }
 
 *{
@@ -25,12 +25,16 @@ body{
   background-color: var(--bg-color);
   display:grid;
   grid-template-columns: 1fr 1fr 1fr ;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: fit-content(1fr),fit-content(1fr),fit-content(1fr),fit-content(1fr);
   grid-gap: 20px;
   place-items: center;
-  width: 100vw;
+  grid-auto-rows: minmax(100px, auto);
+  align-items: stretch;
+  width: 100%;
   min-height: 100vh;
-
+  justify-content: center;
+  padding:20px;
+  
 }
 
 .title{
@@ -40,10 +44,9 @@ body{
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  margin-top: 2rem;
   display:flex;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   grid-column-start: 1;
   grid-column-end: 4;
   background-color: var(--darker);
@@ -53,7 +56,7 @@ body{
 
 
 .gridItem{
-  min-width: 5rem;
+  
   color:white;
   background-color: var(--darker);
   display:flex;
@@ -64,29 +67,33 @@ body{
   padding:3rem;
   grid-row-start: auto;
   width: 100%;
-  height:100%;
+
 }
 
 .gridItemLabel{
   font-size: 25px;
   text-align: center;
   display:block;
-  width:100%;
+  
   clear:both;
 }
 
-
+#result{
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
 
 @media only screen and (max-width: 1200px) {
   .container{
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    place-items: center;
-    width: 100vw;
-    height: 100vh;
+   
     padding: 1rem;
   }
   .title{
+    grid-column-end: 3;
+  }
+  #result{
+    grid-column-start: 1;
     grid-column-end: 3;
   }
 }
@@ -94,6 +101,11 @@ body{
 @media only screen and (max-width: 800px){
   .container{
     grid-template-columns: 1fr;
+
+}
+#result{
+  grid-column-start: 1;
+  grid-column-end: 1;
 }
   .title{
     grid-column-end:2;
