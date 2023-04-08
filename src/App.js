@@ -1,12 +1,12 @@
 import logo from "./logo.svg";
 import { useState, useEffect } from "react";
 import "./style/App.css";
-import axios from "axios";
+import "./style/Flex.css";
 
 import Title from "./components/Title";
 import Encoding from "./components/Encoding";
 import InputData from "./components/InputData";
-import QueryApi from "./components/QueryApi";
+import Summary from "./components/Summary";
 import Results from "./components/Results";
 import ChannelConfig from "./components/ChannelConfig";
 
@@ -25,9 +25,9 @@ function App() {
       <Encoding requestBody={requestBody} setRequestBody={setRequestBody} />
       <ChannelConfig
         requestBody={requestBody}
-        setRequestBOdy={setRequestBody}
+        setRequestBody={setRequestBody}
       />
-      <QueryApi
+      <Summary
         requestBody={requestBody}
         setRequestBody={setRequestBody}
         result={result}

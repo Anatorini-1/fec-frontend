@@ -19,6 +19,7 @@ body{
   --bg-color:#323949;
   --darker: #212129;
   --brighter: #4c5265;
+  --row-bg:rgba(255,255,255,0.2);
 }
 
 .container{
@@ -64,7 +65,7 @@ body{
   justify-content: center;
   flex-direction: column;
   box-shadow: 6px 6px 0px black;
-  padding:3rem;
+  padding:20px;
   grid-row-start: auto;
   width: 100%;
 
@@ -81,6 +82,35 @@ body{
 #result{
   grid-column-start: 2;
   grid-column-end: 4;
+}
+
+.stateBoundButton{
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 7px;
+  margin-top:5px;
+  padding:2px;
+  padding-bottom: 5px;
+  display: block;
+  width: 100%;
+  font-size:large;
+  color:white;
+  text-align: left;
+  border: none;
+  padding:15px
+
+}
+
+.numberInput{
+  font-family: "JetBrains";
+    background-color: var(--brighter);
+    height: 3rem;
+    font-size: 30px;
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    display: block;;
 }
 
 @media only screen and (max-width: 1200px) {

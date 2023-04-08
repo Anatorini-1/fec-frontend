@@ -1,6 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../style/Encoding.css";
+import StateButton from "./UI/StateBoundButton";
+import NumberInput from "./UI/NumberInput";
+
 export default function Encoding({ requestBody, setRequestBody }) {
   const [encoding, setEncoding] = useState("HAMMING");
   const [encodingParams, setEncodingParams] = useState([3]);
@@ -12,33 +15,24 @@ export default function Encoding({ requestBody, setRequestBody }) {
     });
   }, [encoding, encodingParams]);
 
-  const encodingChange = (event) => {
-    setEncoding(event.target.value);
-  };
-
-  const encodingParamsChange = (event) => {
-    switch (encoding) {
-      case "HAMMING":
-        setEncodingParams([parseInt(event.target.value)]);
-        break;
-      case "REPEAT":
-        setEncodingParams([parseInt(event.target.value)]);
-    }
-  };
-
   const encodingParamElems = {
     HAMMING: (
-      <>
-        <fieldset>
-          <legend>Redundancy per block</legend>
-          <input type="number" name="param" defaultValue={3} />
-        </fieldset>
-      </>
+      <NumberInput
+        title="Redundancy per block"
+        value={encodingParams[0]}
+        onChange={(e) => setEncodingParams([parseInt(e.target.value)])}
+        min={1}
+        max={10}
+      />
     ),
     REPEAT: (
-      <>
-        <input type="number" name="param" />
-      </>
+      <NumberInput
+        title="Repetition factor"
+        value={encodingParams[0]}
+        onChange={(e) => setEncodingParams([parseInt(e.target.value)])}
+        min={1}
+        max={10}
+      />
     ),
     BCH: <></>,
     REED_SOLOMON: <></>,
@@ -53,34 +47,18 @@ export default function Encoding({ requestBody, setRequestBody }) {
     "REESE_SOLOMON2",
   ];
 
-  let radios = [
-    <div key={0}>
-      <input
-        type="radio"
-        id={encodings[0]}
-        name="encoding"
-        defaultChecked
-        value={encodings[0]}
-      ></input>
-      <label htmlFor={encodings[0]}>{encodings[0]}</label>
-      <br />
-    </div>,
-  ];
-
-  for (let i = 1; i < encodings.length; i++) {
-    radios.push(
-      <div key={i}>
-        <input
-          type="radio"
-          id={encodings[i]}
-          name="encoding"
-          value={encodings[i]}
-        ></input>
-        <label htmlFor={encodings[i]}>{encodings[i]}</label>
-        <br />
-      </div>
+  let encodingButtons = [];
+  encodings.map((enc) => {
+    encodingButtons.push(
+      <StateButton
+        text={enc}
+        key={enc}
+        state={encoding}
+        setState={setEncoding}
+        value={enc}
+      />
     );
-  }
+  });
 
   let encodingParamsElement = encodingParamElems[encoding];
 
@@ -88,12 +66,8 @@ export default function Encoding({ requestBody, setRequestBody }) {
     <div className="gridItem" id="encoding">
       <div className="gridItemLabel">Encoding</div>
       <div className="encoding">
-        <div className="encodingRadios">
-          <form onChange={encodingChange}>{radios}</form>
-        </div>
-        <div className="encodingParams">
-          <form onChange={encodingParamsChange}>{encodingParamsElement}</form>
-        </div>
+        <div className="encodingRadios">{encodingButtons}</div>
+        <div className="encodingParams">{encodingParamsElement}</div>
       </div>
     </div>
   );

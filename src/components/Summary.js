@@ -2,7 +2,7 @@ import React from "react";
 import "../style/QueryApi.css";
 import axios from "axios";
 
-export default function QueryApi({ requestBody, setRequestBody, setResult }) {
+function Summary({ requestBody, setRequestBody, setResult }) {
   const sendRequest = () => {
     axios
       .post("http://localhost:5000/api/send", requestBody)
@@ -36,8 +36,12 @@ export default function QueryApi({ requestBody, setRequestBody, setResult }) {
             <td>{JSON.stringify(requestBody.encodingParams)}</td>
           </tr>
           <tr>
+            <td>Channel Type</td>
+            <td>{requestBody.channelType}</td>
+          </tr>
+          <tr>
             <td>Channel Parameters</td>
-            <td>{"PLACEHOLDER"}</td>
+            <td>{JSON.stringify(requestBody.channelParams)}</td>
           </tr>
           <tr>
             <td colSpan={2}>
@@ -49,3 +53,5 @@ export default function QueryApi({ requestBody, setRequestBody, setResult }) {
     </div>
   );
 }
+
+export { Summary as default };

@@ -10,23 +10,6 @@
 }
 
 .encodingParams{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+   padding:10px;
     
-}
-
-.encodingParams form{
-    display:grid;
-    place-items: center;
-}
-
-.encodingParams input{
-    display: block;
-    width:50%;
-}
-
-.encodingParams legend{
-    font-size: small;
 }

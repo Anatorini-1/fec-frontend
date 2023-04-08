@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../style/InputData.css";
-
+import StateButton from "./UI/StateBoundButton";
+import NumberInput from "./UI/NumberInput";
 export default function InputData({ requestBody, setRequestBody }) {
   const [inputType, setInputType] = useState("plainText");
   const [inputField, setInputField] = useState();
@@ -39,24 +40,19 @@ export default function InputData({ requestBody, setRequestBody }) {
         break;
       case "random":
         setInputField(
-          <>
-            <label htmlFor="randomDataLength">Length[kB]</label>
-            <input
-              id="randomLenInput"
-              type="number"
-              min="1"
-              max="100000"
-              defaultValue="0"
-            />
-          </>
+          <NumberInput
+            title="Length [kB]"
+            value={null}
+            onChange={(e) => {
+              e.preventDefault();
+            }}
+            min={1}
+            max={100}
+          />
         );
     }
   }, [inputType]);
 
-  const inputTypeChange = (event) => {
-    event.preventDefault();
-    setInputType(event.target.value);
-  };
   const inputDataSubmitted = (event) => {
     event.preventDefault();
     console.log("Input Data Submitted");
@@ -107,27 +103,21 @@ export default function InputData({ requestBody, setRequestBody }) {
   ];
   inputTypes.forEach((it) => {
     buttons.push(
-      <button
+      <StateButton
+        key={it.value}
         name={it.name}
         value={it.value}
-        key={it.value}
-        onClick={inputTypeChange}
-        style={{
-          backgroundColor:
-            it.value == inputType ? "green" : "rgba(255,255,255,0.2)",
-        }}
-      >
-        {it.name}
-      </button>
+        state={inputType}
+        setState={setInputType}
+        text={it.name}
+      />
     );
   });
   return (
     <div id="inputData" className="gridItem">
       <div className="gridItemLabel">Input Data</div>
       <div className="inputData">
-        <div className="inputType">
-          <form onInput={inputTypeChange}>{buttons}</form>
-        </div>
+        <div className="inputType">{buttons}</div>
         <div className="inputDataField">
           <form enctype="multipart/form-data" onChange={inputDataSubmitted}>
             {inputField}
