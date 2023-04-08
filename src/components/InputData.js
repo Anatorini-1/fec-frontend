@@ -1,12 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../style/InputData.css";
-import axios from "axios";
-import icon from "../img/1160358.png";
 
 export default function InputData({ requestBody, setRequestBody }) {
   const [inputType, setInputType] = useState("plainText");
   const [inputField, setInputField] = useState();
+  const [warning, setWarning] = useState("");
   let buttons = [];
   useEffect(() => {
     switch (inputType) {
@@ -26,26 +25,31 @@ export default function InputData({ requestBody, setRequestBody }) {
               <label htmlFor="image" id="imageLabel">
                 Choose an image
               </label>
-              <input
-                type="file"
-                id="image"
-                alt="Image"
-                accept="image/png, image/jpeg, image/bmp"
-              />
+              <input type="file" id="image" alt="Image" accept="image/bmp" />
             </div>
           </>
         );
         break;
       case "textFile":
         setInputField(
-          <input
-            type="file"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          />
+          <>
+            <input type="file" accept=".txt" onClick={(e) => {}} />
+          </>
         );
         break;
+      case "random":
+        setInputField(
+          <>
+            <label htmlFor="randomDataLength">Length[kB]</label>
+            <input
+              id="randomLenInput"
+              type="number"
+              min="1"
+              max="100000"
+              defaultValue="0"
+            />
+          </>
+        );
     }
   }, [inputType]);
 
@@ -73,6 +77,25 @@ export default function InputData({ requestBody, setRequestBody }) {
           format: event.target.files[0].name.split(".").pop(),
         });
       };
+    } else if (inputType == "random") {
+      let len = event.target.value * 1000;
+      let data = "";
+      for (let i = 0; i < len; i++) {
+        data += String.fromCharCode(Math.floor(Math.random() * 32) + 97);
+      }
+
+      setRequestBody({
+        ...requestBody,
+        data: data,
+        type: "plainText",
+      });
+      if (len / 1000 >= 100) {
+        setWarning(
+          "Warning: The data over 100kB may take a long time to process."
+        );
+      } else if (len / 1000 < 100) {
+        setWarning("");
+      }
     }
   };
 
@@ -80,6 +103,7 @@ export default function InputData({ requestBody, setRequestBody }) {
     { name: "Plain Text", value: "plainText" },
     { name: "Image", value: "img" },
     { name: "Text File", value: "textFile" },
+    { name: "Random", value: "random" },
   ];
   inputTypes.forEach((it) => {
     buttons.push(
@@ -108,6 +132,7 @@ export default function InputData({ requestBody, setRequestBody }) {
           <form enctype="multipart/form-data" onChange={inputDataSubmitted}>
             {inputField}
           </form>
+          {warning}
         </div>
       </div>
     </div>

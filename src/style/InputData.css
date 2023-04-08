@@ -52,6 +52,34 @@
     word-wrap: break-word;
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button{
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  #randomLenInput{
+    font-family: "JetBrains";
+    background-color: var(--brighter);
+    height: 3rem;
+    font-size: 30px;
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  #randomLenInput::after{
+    content: "characters";
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: var(--brighter);
+    margin-left: 10px;
+  }
+
   .inputData{
     width:100%;
     text-align: left;
