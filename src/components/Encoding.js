@@ -11,8 +11,9 @@ export default function Encoding({ requestBody, setRequestBody }) {
     setRequestBody({
       ...requestBody,
       encoding: encoding,
-      encodingParams: encodingParams,
+      encodingParams: [...encodingParams],
     });
+    // eslint-disable-next-line
   }, [encoding, encodingParams]);
 
   const encodingParamElems = {
@@ -48,7 +49,7 @@ export default function Encoding({ requestBody, setRequestBody }) {
   ];
 
   let encodingButtons = [];
-  encodings.map((enc) => {
+  encodings.forEach((enc) => {
     encodingButtons.push(
       <StateButton
         text={enc}

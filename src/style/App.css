@@ -64,7 +64,7 @@ body{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  box-shadow: 6px 6px 0px black;
+  border-radius: 12px;
   padding:20px;
   grid-row-start: auto;
   width: 100%;

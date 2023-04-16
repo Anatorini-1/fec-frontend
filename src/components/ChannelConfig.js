@@ -23,7 +23,7 @@ export default function ChannelConfig({ requestBody, setRequestBody }) {
       />
     );
   });
-
+  // eslint-disable-next-line
   useEffect(() => {
     switch (channelType) {
       case "BinarySymetric":
@@ -34,6 +34,9 @@ export default function ChannelConfig({ requestBody, setRequestBody }) {
         break;
       case "Manual":
         setChannelParams([0]);
+        break;
+      default:
+        break;
     }
   }, [channelType]);
 
@@ -43,6 +46,7 @@ export default function ChannelConfig({ requestBody, setRequestBody }) {
       channelType: channelType,
       channelParams: channelParams,
     });
+    // eslint-disable-next-line
   }, [channelType, channelParams]);
   const channelParamsForm = {
     BinarySymetric: (

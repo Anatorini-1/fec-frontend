@@ -1,5 +1,4 @@
-import logo from "./logo.svg";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./style/App.css";
 import "./style/Flex.css";
 
@@ -15,7 +14,9 @@ function App() {
     data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec",
     type: "plainText",
     encoding: "HAMMING",
-    encodingParams: { 0: 3 },
+    encodingParams: [3],
+    channel: "BinarySymetric",
+    channelParams: [0],
   });
   const [result, setResult] = useState([1]);
   return (

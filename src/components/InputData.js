@@ -33,9 +33,12 @@ export default function InputData({ requestBody, setRequestBody }) {
         break;
       case "textFile":
         setInputField(
-          <>
-            <input type="file" accept=".txt" onClick={(e) => {}} />
-          </>
+          <div>
+            <label htmlFor="image" id="imageLabel">
+              Choose a file
+            </label>
+            <input type="file" id="image" accept=".txt" />
+          </div>
         );
         break;
       case "random":
@@ -50,19 +53,22 @@ export default function InputData({ requestBody, setRequestBody }) {
             max={100}
           />
         );
+        break;
+      default:
+        break;
     }
   }, [inputType]);
 
   const inputDataSubmitted = (event) => {
     event.preventDefault();
     console.log("Input Data Submitted");
-    if (inputType == "plainText") {
+    if (inputType === "plainText") {
       setRequestBody({
         ...requestBody,
         data: event.target.value,
         type: "plainText",
       });
-    } else if (inputType == "img") {
+    } else if (inputType === "img") {
       let fr = new FileReader();
       fr.readAsBinaryString(event.target.files[0]);
       fr.onload = () => {
@@ -73,7 +79,7 @@ export default function InputData({ requestBody, setRequestBody }) {
           format: event.target.files[0].name.split(".").pop(),
         });
       };
-    } else if (inputType == "random") {
+    } else if (inputType === "random") {
       let len = event.target.value * 1000;
       let data = "";
       for (let i = 0; i < len; i++) {
@@ -92,6 +98,16 @@ export default function InputData({ requestBody, setRequestBody }) {
       } else if (len / 1000 < 100) {
         setWarning("");
       }
+    } else if (inputType === "textFile") {
+      let fr = new FileReader();
+      fr.readAsBinaryString(event.target.files[0]);
+      fr.onload = () => {
+        setRequestBody({
+          ...requestBody,
+          data: fr.result,
+          type: "plainText",
+        });
+      };
     }
   };
 

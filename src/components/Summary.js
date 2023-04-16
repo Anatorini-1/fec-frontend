@@ -1,21 +1,24 @@
 import React from "react";
 import "../style/QueryApi.css";
 import axios from "axios";
-
+import ClipLoader from "react-spinners/ClipLoader";
 function Summary({ requestBody, setRequestBody, setResult }) {
+  const [isLoaded, setIsLoaded] = React.useState(true);
+
   const sendRequest = () => {
+    setIsLoaded(false);
     axios
       .post("http://localhost:5000/api/send", requestBody)
       .then((response) => {
         setResult(response.data);
+        setIsLoaded(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  return (
-    <div id="queryApi" className="gridItem">
+  const summary = (
+    <>
       <div className="gridItemLabel">Summary</div>
       <table className="summaryTable" cellSpacing={"10px"}>
         <tbody>
@@ -50,6 +53,15 @@ function Summary({ requestBody, setRequestBody, setResult }) {
           </tr>
         </tbody>
       </table>
+    </>
+  );
+
+  const loader = (
+    <ClipLoader size={150} aria-label="Loading Spinner" data-testid="loader" />
+  );
+  return (
+    <div id="queryApi" className="gridItem">
+      {isLoaded ? summary : loader}
     </div>
   );
 }
